@@ -1,27 +1,30 @@
 $(document).ready(function() {
-  $('#login').on('click', function(event){
+  $("#login").on('click', function(event){
     event.preventDefault();
 
     $.ajax({
       method: 'GET',
       url: '/login'
+    }).done(function(response){
+      $('.container').html(response);
     })
-    .done(function(response){
-      $(".container").html(response);
-    });
-  });
+  })
 
-  $('#register').on('click', function(event){
+  $('.container').on('submit','#form', function(event){
     event.preventDefault();
+    var url = $(this).attr('action');
+    var form = $(this);
+    userInfo = form.serialize();
 
     $.ajax({
-      method: 'GET',
-      url: '/users/new'
+      method: 'POST',
+      url: url,
+      data: userInfo
     })
     .done(function(response){
-      $(".container").html(response);
-    });
-  });
+      window.location = "/users/" + response
+    })
+  })
 
   $('#logout').on('click', function(event){
     event.preventDefault();
@@ -29,10 +32,11 @@ $(document).ready(function() {
     $.ajax({
       method: 'DELETE',
       url: '/logout'
+    }).done(function(response){
+      if (response) {
+        window.location = "/"
+      }
     })
-    // .done(function(response){
-    //   $(".container").html(response);
-    // });
-  });
+  })
 
 });

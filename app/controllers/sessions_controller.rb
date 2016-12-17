@@ -1,19 +1,26 @@
 get '/login' do
-  erb :'/login', layout: false
-end
-
-post '/login' do
-  @user = User.find_by(username: params[:username])
-  if @user && @user.authenticate(params[:password])
-    login(@user)
-    redirect "/users/#{@user.id}"
+  if request.xhr?
+    erb :'/login', layout: false
   else
-    @error = "Email and/or password are invalid!"
     erb :'/login'
   end
 end
 
+post '/login' do
+
+  @user = User.find_by(username: params[:username])
+  if @user && @user.authenticate(params[:password])
+    login(@user)
+
+    "#{@user.id}"
+  else
+    @error = "Email and/or password are invalid!"
+    erb :'/login', layout: false
+  end
+
+end
+
 delete '/logout' do
     logout
-    redirect "/"
+    redirect '/'
 end
