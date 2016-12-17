@@ -13,7 +13,7 @@ helpers do
   end
 
   def logout
-    session[:id] = nil
+    session.clear
   end
 
 end

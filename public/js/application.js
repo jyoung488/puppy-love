@@ -23,4 +23,16 @@ $(document).ready(function() {
     });
   });
 
+  $('#logout').on('click', function(event){
+    event.preventDefault();
+
+    $.ajax({
+      method: 'DELETE',
+      url: '/logout'
+    })
+    // .done(function(response){
+    //   $(".container").html(response);
+    // });
+  });
+
 });

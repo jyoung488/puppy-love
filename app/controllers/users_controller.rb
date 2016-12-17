@@ -38,7 +38,7 @@ put '/users/:id' do
   end
 end
 
-delete '/users/:id/' do
+delete '/users/:id' do
   @user = User.find(params[:id])
   @user.destroy
   redirect "/users"

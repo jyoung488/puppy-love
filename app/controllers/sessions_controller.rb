@@ -3,7 +3,7 @@ get '/login' do
 end
 
 post '/login' do
-  @user = User.find_by(email: params[:email])
+  @user = User.find_by(username: params[:username])
   if @user && @user.authenticate(params[:password])
     login(@user)
     redirect "/users/#{@user.id}"
@@ -13,7 +13,7 @@ post '/login' do
   end
 end
 
-get '/logout' do
-  logout
-  redirect "/"
+delete '/logout' do
+    logout
+    redirect "/"
 end
