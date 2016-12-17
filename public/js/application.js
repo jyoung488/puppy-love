@@ -39,4 +39,31 @@ $(document).ready(function() {
     })
   })
 
+  $('#register').on('click', function(event){
+    event.preventDefault();
+
+    $.ajax({
+      url: '/users/new',
+      method: 'GET'
+    })
+    .done(function(response){
+      $('.container').html(response);
+    });
+  });
+
+  $('.container').on('submit','.login-form', function(event){
+    event.preventDefault();
+    var form = $(this);
+    userInfo = form.serialize();
+
+    $.ajax({
+      method: 'POST',
+      url: '/users',
+      data: userInfo
+    })
+    .done(function(response){
+      window.location = "/"
+    })
+  })
+
 });

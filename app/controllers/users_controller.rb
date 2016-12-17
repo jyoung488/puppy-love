@@ -5,12 +5,18 @@ end
 post '/users' do
   if params[:user][:password] == params[:password_confirm]
     @user = User.new(params[:user])
-    if @user.save
-      login(@user)
-      redirect "/users/#{@user.id}"
+    if request.xhr?
+      if @user.save
+        login(@user)
+        erb :"/users/show", layout: false
+      else
+        @error = "Wrong email format!"
+        erb :'users/new'
+      end
     else
-      @error = "Wrong email format!"
-      erb :'users/new'
+      @user.save
+      login(@user)
+      redirect "/users/#{user.id}"
     end
   else
     @error = "Your entered passwords don't match!"

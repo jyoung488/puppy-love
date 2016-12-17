@@ -9,13 +9,18 @@ end
 post '/login' do
 
   @user = User.find_by(username: params[:username])
-  if @user && @user.authenticate(params[:password])
-    login(@user)
+  if request.xhr?
+    if @user && @user.authenticate(params[:password])
+      login(@user)
 
-    "#{@user.id}"
+      "#{@user.id}"
+    else
+      @error = "Email and/or password are invalid!"
+      erb :'/login', layout: false
+    end
   else
-    @error = "Email and/or password are invalid!"
-    erb :'/login', layout: false
+    login(@user)
+    redirect "/"
   end
 
 end
