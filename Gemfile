@@ -6,7 +6,7 @@ gem 'pg'
 # Sinatra driver
 gem 'sinatra', '~> 1.0'
 gem 'sinatra-contrib'
-
+gem 'flickraw'
 gem 'activesupport', '~>4.2.0'
 gem 'activerecord', '~>4.2.0'
 gem 'dotenv'
@@ -16,6 +16,7 @@ gem 'bcrypt'
 gem 'hirb'
 gem 'shotgun', '~>0.9.1'
 gem 'instagram'
+gem 'json'
 
 group :test do
   gem 'shoulda-matchers'
