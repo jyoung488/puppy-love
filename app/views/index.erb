@@ -1,6 +1,10 @@
 <h1>Where's the (🐶) Love?</h1>
 <div class="container">
-  <button type="button">show pups</button>
+  <a href="https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=<%= ENV['FLICKR_KEY'] %>&tags=puppies&lat=<%= @lat %>&lon=<%= @lon %>&radius=5&format=json&nojsoncallback=1" class="show">show pups</a>
 </div>
-<div class="gallery">
+<div class="wrapper">
+    <div class="row">
+        <div class="dt-8 tl-6 tp-4 ml-6">
+        </div>
+    </div>
 </div>

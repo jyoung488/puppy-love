@@ -66,12 +66,46 @@ $(document).ready(function() {
     })
   })
 
-  $('button').on('click', function(event){
+  // $('button').on('click', function(event){
+  //   $.ajax({
+  //     url: "https://api.flickr.com/services/rest/",
+  //     data: {
+  //       method: "flickr.photos.search",
+  //       api_key: ENV['FLICKR_KEY'],
+  //       lat: 37.8,
+  //       lon: -122.25,
+  //       radius: 5,
+  //       tags: "puppies,dogs",
+  //       format: "json",
+  //       nojsoncallback: 1
+  //     }
+  //   })
+  //   .done(function(response){
+  //       $.each(response.photos.photo, function(i, gp) {
+  //         var farmId = gp.farm;
+  //         var serverId = gp.server;
+  //         var id = gp.id;
+  //         var secret = gp.secret;
+  //
+  //         // console.log('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+  //
+  //         $('.gallery').append('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+  //       });
+  //   });
+  // });
+  // var lat = '37.8'
+  // var long = '-122.25'
+  // var call = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=35d6e43be466c649556aaffa8f4e75a1&tags=puppies&lat=' + lat + '&lon=' + long + '&radius=5&format=json&nojsoncallback=1'
+
+  $('.show').on('click', function(event){
+    event.preventDefault();
+    url = $(this).attr('href');
+
     $.ajax({
       async: true,
       crossDomain: true,
       method: 'GET',
-      url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=94049170d6810a26619006597bc3c72e&tags=puppy%2C+dog&lat=37.80&lon=-122.25&radius=10&format=json&nojsoncallback=1&auth_token=72157676261047282-4c49609871a0a22e&api_sig=78ed3a2c84fdb495516faafda296043d',
+      url: url,
       headers: {}
     })
     .done(function(response){
@@ -81,9 +115,9 @@ $(document).ready(function() {
           var id = gp.id;
           var secret = gp.secret;
 
-          console.log('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+          // console.log('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
 
-          $('.gallery').append('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+          $('.wrapper').append('<div class="dt-8 tl-6 tp-4 ml-6"><img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/></div>');
         });
     });
   });
