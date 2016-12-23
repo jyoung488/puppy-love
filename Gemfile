@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.6'
+
 # PostgreSQL driver
 gem 'pg'
 
@@ -15,8 +17,8 @@ gem 'pry'
 gem 'bcrypt'
 gem 'hirb'
 gem 'shotgun', '~>0.9.1'
-gem 'instagram'
 gem 'json'
+
 
 group :test do
   gem 'shoulda-matchers'
