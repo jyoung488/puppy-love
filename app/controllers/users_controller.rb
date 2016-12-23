@@ -8,7 +8,6 @@ post '/users' do
     if request.xhr?
       if @user.save
         login(@user)
-        erb :"/users/show"
       else
         @error = "Wrong email format!"
         erb :'users/new'
