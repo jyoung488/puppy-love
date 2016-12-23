@@ -9,9 +9,9 @@ post '/users' do
       if @user.save
         login(@user)
 
-        "#{@user.id}"
+        erb :'/users/show'
       else
-        @error = "Wrong email format!"
+        @error = "Something went wrong!"
         erb :'/users/new'
       end
     else
@@ -21,7 +21,7 @@ post '/users' do
     end
   else
     @error = "Your entered passwords don't match!"
-    erb :'/users/new'
+    erb :'/users/new', layout: false
   end
 end
 

@@ -12,10 +12,10 @@ post '/login' do
     if @user && @user.authenticate(params[:password])
       login(@user)
 
-      "#{@user.id}"
+      erb :"/users/show", layout: false
     else
       @error = "Username and/or password are invalid!"
-      erb :'/login', layout: false
+      erb :"/login", layout: false
     end
   else
     login(@user)

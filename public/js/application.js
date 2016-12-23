@@ -25,7 +25,7 @@ $(document).ready(function() {
     })
   })
 
-  $('.container').on('submit','#form', function(event){
+  $('.container').on('submit','#login-form', function(event){
     event.preventDefault();
     var url = $(this).attr('action');
     var method = $(this).attr('method');
@@ -37,7 +37,7 @@ $(document).ready(function() {
       data: info
     })
     .done(function(response){
-      window.location = "/"
+      $('.container').html(response);
     });
   });
 
@@ -82,7 +82,11 @@ $(document).ready(function() {
     })
   })
 
+  getLocationPuppies()
 
+});
+
+var getLocationPuppies = function() {
 
   $('.container').on('click', '.display-pups', function(event){
     event.preventDefault();
@@ -95,7 +99,7 @@ $(document).ready(function() {
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
 
-    var url = $('.display-pups').attr('href') + lat + '&lon=' + lon + '&radius=10&format=json&nojsoncallback=1';
+    var url = $('.display-pups').attr('href') + lat + '&lon=' + lon + '&radius=15&format=json&nojsoncallback=1';
       $.ajax({
       method: 'GET',
       url: url,
@@ -113,4 +117,4 @@ $(document).ready(function() {
       });
     });
   });
-});
+}
