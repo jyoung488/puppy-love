@@ -31,17 +31,12 @@ $(document).ready(function() {
     var method = $(this).attr('method');
     var info = $(this).serialize();
 
-    console.log(url);
-    console.log(method);
-    console.log(info);
-
     $.ajax({
       method: 'POST',
       url: '/login',
       data: info
     })
     .done(function(response){
-      console.log(response);
       window.location = "/"
     });
   });
@@ -60,15 +55,14 @@ $(document).ready(function() {
 
   $('.container').on('submit','#new-user', function(event){
     event.preventDefault();
-    var form = this;
-    var method = $(form).attr('method');
-    var url = $(form).attr('action');
-    var userInfo = $(form).serialize();
+    var method = $(this).attr('method');
+    var url = $(this).attr('action');
+    var info = $(this).serialize();
 
     $.ajax({
       method: method,
       url: url,
-      data: userInfo
+      data: info
     })
     .done(function(response){
       window.location = "/"
