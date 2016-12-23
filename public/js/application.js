@@ -98,16 +98,20 @@ $(document).ready(function() {
   $('.display-pups').on('click', function(event){
     event.preventDefault();
     $('.gallery').show();
-    var lat = 30
-    var lon = 30
-    var url = $(this).attr('href') + lat + '&lon=' + lon + '&radius=5&format=json&nojsoncallback=1'
+    var lat;
+    var lon;
 
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
 
-    $.ajax({
+    var url = $('.display-pups').attr('href') + lat + '&lon=' + lon + '&radius=10&format=json&nojsoncallback=1';
+    console.log(url)
+      $.ajax({
       async: true,
       crossDomain: true,
       method: 'GET',
-      url: url + lat + '&lon=' + lon + '&radius=5&format=json&nojsoncallback=1',
+      url: url,
       headers: {}
     })
     .done(function(response){
@@ -117,18 +121,9 @@ $(document).ready(function() {
           var id = gp.id;
           var secret = gp.secret;
 
-          $('.gallery').append('<div><img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/></div>');
+          $('.gallery').append('<div><img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg" class="picture"></div>');
         });
     });
   });
-
 });
-
-function initiateLoc() {
-    navigator.geolocation.getCurrentPosition(handle_geolocation_query);
-     }
-
- function handle_geolocation_query(position){
-     alert('Lat: ' + position.coords.latitude + ' ' +
-           'Lon: ' + position.coords.longitude);
- }
+});
