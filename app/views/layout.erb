@@ -18,15 +18,15 @@
   <title>Where's the (🐶) Love?</title>
 
   <% if logged_in? %>
-  <p>
-    <a href="/logout" id="logout">Logout</a>
+  <p id="links">
+    <a href="/logout" class="show logout">Logout</a>
   </p>
   <% else %>
-    <p>
-      <a href="/login" id="login">Login</a> | <a href="/users/new" id="register">Register</a><br>
+    <p id="links">
+      <a href="/login" class="show login">Login</a> | <a href="/users/new" class="show register">Register</a><br>
     </p>
   <% end %>
-  <a href="/" id="home">Home</a>
+  <a href="/" class="show home">Home</a>
 </head>
 <body>
   <div class="container">
