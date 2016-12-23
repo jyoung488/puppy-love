@@ -9,7 +9,7 @@ post '/users' do
       if @user.save
         login(@user)
 
-        erb :'/users/show'
+        redirect "/users/#{@user.id}"
       else
         @error = "Wrong email format!"
         erb :'/users/new'
