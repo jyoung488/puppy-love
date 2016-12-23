@@ -13,7 +13,7 @@ post '/login' do
     if @user && @user.authenticate(params[:password])
       login(@user)
 
-      redirect "/users/#{@user.id}"
+      # redirect "/users/#{@user.id}"
     else
       @error = "Email and/or password are invalid!"
       erb :'/login', layout: false
