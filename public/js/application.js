@@ -28,11 +28,11 @@ $(document).ready(function() {
   $('.container').on('submit','#form', function(event){
     event.preventDefault();
     var url = $(this).attr('action');
-    var form = $(this);
-    userInfo = form.serialize();
+    var method = $(this).attr('method');
+    userInfo = $(this).serialize();
 
     $.ajax({
-      method: 'POST',
+      method: method,
       url: url,
       data: userInfo
     })
