@@ -15,6 +15,7 @@ body {
 .gallery {
   width: 640px;
   margin: 0 auto;
+  margin-top: -100px;
   padding: 5px;
   background: #eee;
   box-shadow: 0 1px 2px rgba(0,0,0,.3);
@@ -61,7 +62,7 @@ h1 {
 
 .container {
   min-height: 100px;
-  margin-top: 100px;
+  margin-top: 50px;
   width: 100%;
   text-align: center;
 }

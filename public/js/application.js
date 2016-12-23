@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $('.gallery').hide();
 
   $(".login").on('click', function(event){
@@ -95,9 +96,10 @@ $(document).ready(function() {
     })
   })
 
-  $('.display-pups').on('click', function(event){
+  $('.container').on('click', '.display-pups', function(event){
     event.preventDefault();
-    $('.gallery').show();
+
+    var element = this;
     var lat;
     var lon;
 
@@ -106,13 +108,9 @@ $(document).ready(function() {
       var lon = position.coords.longitude;
 
     var url = $('.display-pups').attr('href') + lat + '&lon=' + lon + '&radius=10&format=json&nojsoncallback=1';
-    console.log(url)
       $.ajax({
-      async: true,
-      crossDomain: true,
       method: 'GET',
       url: url,
-      headers: {}
     })
     .done(function(response){
         $.each(response.photos.photo, function(i, gp) {
@@ -120,10 +118,11 @@ $(document).ready(function() {
           var serverId = gp.server;
           var id = gp.id;
           var secret = gp.secret;
-
-          $('.gallery').append('<div><img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg" class="picture"></div>');
+          $('.gallery').append('<div class="picture"><img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"></div>');
+          $('.gallery').fadeIn(1700);
+          $(element).hide();
         });
+      });
     });
   });
-});
 });
