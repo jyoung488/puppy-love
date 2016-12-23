@@ -29,17 +29,22 @@ $(document).ready(function() {
     event.preventDefault();
     var url = $(this).attr('action');
     var method = $(this).attr('method');
-    userInfo = $(this).serialize();
+    var info = $(this).serialize();
+
+    console.log(url);
+    console.log(method);
+    console.log(info);
 
     $.ajax({
-      method: method,
-      url: url,
-      data: userInfo
+      method: 'POST',
+      url: '/login',
+      data: info
     })
     .done(function(response){
-      window.location = "/users/" + response
-    })
-  })
+      console.log(response);
+      window.location = "/"
+    });
+  });
 
   $(".register").on('click', function(event){
     event.preventDefault();
@@ -51,32 +56,6 @@ $(document).ready(function() {
     }).done(function(response){
       $('.container').html(response);
     })
-  })
-
-  $('.logout').on('click', function(event){
-    event.preventDefault();
-
-    $.ajax({
-      method: 'DELETE',
-      url: '/logout'
-    }).done(function(response){
-      if (response) {
-        window.location = "/"
-      }
-    })
-  })
-
-  $('.register').on('click', function(event){
-    event.preventDefault();
-    var url = $(this).attr('href');
-
-    $.ajax({
-      url: url,
-      method: 'GET'
-    })
-    .done(function(response){
-      $('.container').html(response);
-    });
   });
 
   $('.container').on('submit','#new-user', function(event){
@@ -94,7 +73,22 @@ $(document).ready(function() {
     .done(function(response){
       window.location = "/"
     })
+  });
+
+  $('.logout').on('click', function(event){
+    event.preventDefault();
+
+    $.ajax({
+      method: 'DELETE',
+      url: '/logout'
+    }).done(function(response){
+      if (response) {
+        window.location = "/"
+      }
+    })
   })
+
+
 
   $('.container').on('click', '.display-pups', function(event){
     event.preventDefault();

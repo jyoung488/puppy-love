@@ -7,15 +7,14 @@ get '/login' do
 end
 
 post '/login' do
-
   @user = User.find_by(username: params[:username])
   if request.xhr?
     if @user && @user.authenticate(params[:password])
       login(@user)
 
-      erb
+      "#{@user.id}"
     else
-      @error = "Email and/or password are invalid!"
+      @error = "Username and/or password are invalid!"
       erb :'/login', layout: false
     end
   else
